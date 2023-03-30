@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Projectile.generated.h"
 
+class UProjectileMovementComponent;
 UCLASS()
 class TOONTANKS_API AProjectile : public AActor
 {
@@ -26,5 +27,11 @@ public:
 private:
 	UPROPERTY(VisibleAnywhere, Category="ProjectileComponents", BlueprintReadOnly, meta = (AllowPrivateAccess="true"))
 	UStaticMeshComponent* ProjectileMesh;
+
+	UPROPERTY(VisibleAnywhere, Category="Combat")
+	UProjectileMovementComponent* ProjectileMovementComponent;
+
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComp,AActor* OtherActor,UPrimitiveComponent* OtherComp,FVector NormalImpulse,const FHitResult& Hit);
 
 };
